@@ -1,4 +1,4 @@
-package OnlineLibrary.ro.MyApiAppgit;
+package OnlineLibrary.ro.MyApiApp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
