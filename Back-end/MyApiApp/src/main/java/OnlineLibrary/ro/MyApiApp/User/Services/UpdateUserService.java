@@ -10,10 +10,12 @@ public class UpdateUserService implements IUpdateUserService {
 
     private final UserRepository userRepository;
     private final ValidateEmailUser validateEmailUser;
+    private final ValidateUsernameService validateUsernameService;
 
-    public UpdateUserService(UserRepository userRepository, ValidateEmailUser validateEmailUser) {
+    public UpdateUserService(UserRepository userRepository, ValidateEmailUser validateEmailUser, ValidateUsernameService validateUsernameService) {
         this.userRepository = userRepository;
         this.validateEmailUser = validateEmailUser;
+        this.validateUsernameService = validateUsernameService;
     }
 
     @Override
@@ -25,6 +27,7 @@ public class UpdateUserService implements IUpdateUserService {
         userUpdate.setEmail(user.getEmail());
         validateEmailUser.validateEmail(user.getEmail());
         userUpdate.setPassword(user.getPassword());
+        validateUsernameService.validateUsername((user.getUsername()));
 
         userRepository.save(userUpdate);
 

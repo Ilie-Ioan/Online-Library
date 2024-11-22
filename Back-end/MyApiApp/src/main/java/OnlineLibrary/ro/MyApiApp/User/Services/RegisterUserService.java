@@ -10,16 +10,19 @@ public class RegisterUserService implements IRegisterUserService {
 
     private final UserRepository userRepository;
     private final ValidateEmailUser validateEmailUser;
+    private final ValidateUsernameService validateUsernameService;
 
-    public RegisterUserService(UserRepository userRepository, ValidateEmailUser validateEmailUser) {
+    public RegisterUserService(UserRepository userRepository, ValidateEmailUser validateEmailUser, ValidateUsernameService validateUsernameService) {
         this.userRepository = userRepository;
         this.validateEmailUser = validateEmailUser;
+        this.validateUsernameService = validateUsernameService;
     }
 
 
     @Override
     public void registerUser(User user) {
         validateEmailUser.validateEmail(user.getEmail());
+        validateUsernameService.validateUsername(user.getUsername());
         userRepository.save(user);
 
     }
