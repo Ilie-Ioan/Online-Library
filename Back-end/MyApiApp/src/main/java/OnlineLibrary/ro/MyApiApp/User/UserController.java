@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/users")
+@RequestMapping(path = "/users")
 public class UserController {
 
     private final ShowAllUserService showAllUserService;
@@ -32,7 +32,7 @@ public class UserController {
         return showAllUserService.getUsers();
     }
 
-    @PostMapping
+    @PostMapping(path = "/register")
     public void registerUser(@RequestBody User user)
     {
        registerUserService.registerUser(user);

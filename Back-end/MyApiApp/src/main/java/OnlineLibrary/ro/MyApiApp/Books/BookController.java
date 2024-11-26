@@ -2,28 +2,71 @@ package OnlineLibrary.ro.MyApiApp.Books;
 
 
 import OnlineLibrary.ro.MyApiApp.Books.Classes.Books;
-import OnlineLibrary.ro.MyApiApp.Books.Interfaces.IGetBookService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import OnlineLibrary.ro.MyApiApp.Books.Services.AddBookService;
+import OnlineLibrary.ro.MyApiApp.Books.Services.GetBookService;
+import OnlineLibrary.ro.MyApiApp.Books.Services.UpdateBookService;
+import OnlineLibrary.ro.MyApiApp.Books.Services.DeleteBookService;
+import OnlineLibrary.ro.MyApiApp.Books.Services.BorrowBookService;
+import OnlineLibrary.ro.MyApiApp.Books.Services.ReturnBookService;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/v1/books")
+@RequestMapping(path = "/books")
 public class BookController {
 
-    private final IGetBookService iGetBookService;
+   private final GetBookService getBookService;
+   private final AddBookService addBookService;
+   private final UpdateBookService updateBookService;
+   private final DeleteBookService deleteBookService;
+   private final BorrowBookService borrowBookService;
+   private final ReturnBookService returnBookService;
 
-    public BookController(IGetBookService iGetBookService) {
-        this.iGetBookService = iGetBookService;
+
+    public BookController(GetBookService getBookService, AddBookService addBookService, UpdateBookService updateBookService, DeleteBookService deleteBookService, BorrowBookService borrowBookService, ReturnBookService returnBookService) {
+        this.getBookService = getBookService;
+        this.addBookService = addBookService;
+        this.updateBookService = updateBookService;
+        this.deleteBookService = deleteBookService;
+        this.borrowBookService = borrowBookService;
+        this.returnBookService = returnBookService;
     }
 
-
-    @GetMapping
-    public List<Books> getAllBooks()
+    @GetMapping(path = "/home")
+    public List<Books> getBooks()
     {
-        return iGetBookService.getAllBooks();
+        return getBookService.getAllBooks();
+    }
+
+    @PostMapping(path = "/add")
+    public void addBook(@RequestBody  Books book)
+    {
+        addBookService.AddBook(book);
+    }
+
+    @PutMapping(path = "{id}")
+    public void updateBook(@RequestBody Books book ,@PathVariable long id)
+    {
+        updateBookService.UpdateBook(book,id);
+    }
+
+    @PutMapping(path = "{id}/borrow")
+    public void borrowBook(@PathVariable long id)
+    {
+        borrowBookService.BorrowBook(id);
+    }
+
+    @PutMapping(path = "{id}/return")
+    public void returnBook(@PathVariable long id)
+    {
+        returnBookService.ReturnBook(id);
+    }
+
+    @DeleteMapping(path = "{id}")
+    public void deleteBooks(@PathVariable long id)
+    {
+        deleteBookService.DeleteBook(id);
     }
 
 }

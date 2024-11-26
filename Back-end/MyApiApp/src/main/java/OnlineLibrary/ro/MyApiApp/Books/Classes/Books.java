@@ -22,7 +22,14 @@ public class Books {
     private int year;
     private boolean status;
 
-    public Books(String title, String author, int year,boolean status) {
+    public Books() {
+        this.title = "No name";
+        this.author = "No author";
+        this.year = 0;
+        this.status = true;
+    }
+
+    public Books(String title, String author, int year, boolean status) {
         this.title = title;
         this.author = author;
         this.year = year;

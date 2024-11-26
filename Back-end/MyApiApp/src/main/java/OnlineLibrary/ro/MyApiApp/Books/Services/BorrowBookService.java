@@ -1,4 +1,31 @@
 package OnlineLibrary.ro.MyApiApp.Books.Services;
 
-public class BorrowBookService {
+import OnlineLibrary.ro.MyApiApp.Books.Classes.Books;
+import OnlineLibrary.ro.MyApiApp.Books.Interfaces.IBorrowBookService;
+import OnlineLibrary.ro.MyApiApp.Books.Repository.BookRepository;
+import org.springframework.stereotype.Service;
+
+@Service
+public class BorrowBookService implements IBorrowBookService {
+
+    private final BookRepository bookRepository;
+
+    public BorrowBookService(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
+
+    @Override
+    public void BorrowBook(long id) {
+        Books books = bookRepository.findById(id).orElseThrow(
+                ()-> new IllegalStateException(String.format("The book with the id %d was not found",id))
+        );
+        if(!books.isStatus())
+        {
+            throw new IllegalStateException(String.format("The book with the id %d was not returned",id));
+        }
+
+        books.setStatus(false);
+        bookRepository.save(books);
+
+    }
 }
