@@ -9,6 +9,7 @@ import OnlineLibrary.ro.MyApiApp.User.Services.UpdateUserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(path = "/users")
@@ -39,13 +40,13 @@ public class UserController {
     }
 
     @PutMapping(path = "{id}")
-    public void updateUser(@RequestBody User user, @PathVariable long id)
+    public void updateUser(@RequestBody User user, @PathVariable UUID id)
     {
         updateUserService.updateUser(user,id);
     }
 
     @DeleteMapping(path = "{id}")
-    public  void deleteUser(@PathVariable long id)
+    public  void deleteUser(@PathVariable UUID id)
     {
         deleteUserService.deleteUser(id);
     }

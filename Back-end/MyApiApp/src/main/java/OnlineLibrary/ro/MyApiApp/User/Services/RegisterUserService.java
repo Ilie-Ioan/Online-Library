@@ -6,7 +6,7 @@ import OnlineLibrary.ro.MyApiApp.User.Repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RegisterUserService implements IRegisterUserService {
+public class    RegisterUserService implements IRegisterUserService {
 
     private final UserRepository userRepository;
     private final ValidateEmailUser validateEmailUser;

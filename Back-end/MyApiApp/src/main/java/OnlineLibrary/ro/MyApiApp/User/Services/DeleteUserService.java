@@ -4,6 +4,8 @@ import OnlineLibrary.ro.MyApiApp.User.Interfaces.IDeleteUserService;
 import OnlineLibrary.ro.MyApiApp.User.Repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class DeleteUserService implements IDeleteUserService {
 
@@ -14,7 +16,7 @@ public class DeleteUserService implements IDeleteUserService {
     }
 
     @Override
-    public void deleteUser(long id) {
+    public void deleteUser(UUID id) {
         userRepository.deleteById(id);
     }
 }
