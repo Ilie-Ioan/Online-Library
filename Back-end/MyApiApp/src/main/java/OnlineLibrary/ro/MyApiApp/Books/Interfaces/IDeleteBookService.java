@@ -1,5 +1,7 @@
 package OnlineLibrary.ro.MyApiApp.Books.Interfaces;
 
+import java.util.UUID;
+
 public interface IDeleteBookService {
-    void DeleteBook(Long id);
+    void DeleteBook(UUID id);
 }

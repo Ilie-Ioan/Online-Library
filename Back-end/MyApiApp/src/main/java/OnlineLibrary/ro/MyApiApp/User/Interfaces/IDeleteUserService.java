@@ -1,5 +1,7 @@
 package OnlineLibrary.ro.MyApiApp.User.Interfaces;
 
+import java.util.UUID;
+
 public interface IDeleteUserService {
-    void deleteUser(long id);
+    void deleteUser(UUID id);
 }

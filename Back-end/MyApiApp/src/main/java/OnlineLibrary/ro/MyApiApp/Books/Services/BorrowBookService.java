@@ -5,6 +5,8 @@ import OnlineLibrary.ro.MyApiApp.Books.Interfaces.IBorrowBookService;
 import OnlineLibrary.ro.MyApiApp.Books.Repository.BookRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class BorrowBookService implements IBorrowBookService {
 
@@ -15,7 +17,7 @@ public class BorrowBookService implements IBorrowBookService {
     }
 
     @Override
-    public void BorrowBook(long id) {
+    public void BorrowBook(UUID id) {
         Books books = bookRepository.findById(id).orElseThrow(
                 ()-> new IllegalStateException(String.format("The book with the id %d was not found",id))
         );

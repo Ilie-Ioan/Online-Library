@@ -2,20 +2,14 @@ package OnlineLibrary.ro.MyApiApp.Books.Classes;
 
 import jakarta.persistence.*;
 
+import java.util.UUID;
+
 @Entity
 @Table(name = "books")
 public class Books {
     @Id
-    @SequenceGenerator(
-            name = "books_id_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue
-            (
-                    generator = "books_id_sequence",
-                    strategy = GenerationType.SEQUENCE
-            )
-    private long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     private String title;
     private String author;
@@ -68,8 +62,7 @@ public class Books {
         this.year = year;
     }
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
-
 }

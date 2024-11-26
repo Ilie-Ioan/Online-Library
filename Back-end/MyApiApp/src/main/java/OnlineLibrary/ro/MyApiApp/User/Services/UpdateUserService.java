@@ -5,6 +5,8 @@ import OnlineLibrary.ro.MyApiApp.User.Interfaces.IUpdateUserService;
 import OnlineLibrary.ro.MyApiApp.User.Repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class UpdateUserService implements IUpdateUserService {
 
@@ -19,7 +21,7 @@ public class UpdateUserService implements IUpdateUserService {
     }
 
     @Override
-    public void updateUser(User user, long id) {
+    public void updateUser(User user, UUID id) {
         User userUpdate = userRepository.findById(id).orElseThrow(
                 () -> new IllegalStateException(String.format("The user with the id %d was not found",id))
         );

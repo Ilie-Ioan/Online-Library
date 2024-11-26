@@ -3,19 +3,14 @@ package OnlineLibrary.ro.MyApiApp.User.Classes;
 
 import jakarta.persistence.*;
 
+import java.util.UUID;
+
 @Entity
 @Table(name = "users")
 public class User {
     @Id
-    @SequenceGenerator(
-            name = "user_id_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            generator = "user_id_sequence",
-            strategy =  GenerationType.SEQUENCE
-    )
-    private long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     private String username;
     private String email;
@@ -30,7 +25,7 @@ public class User {
         this.password = password;
     }
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 

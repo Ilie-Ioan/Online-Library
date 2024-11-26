@@ -4,6 +4,8 @@ import OnlineLibrary.ro.MyApiApp.Books.Interfaces.IDeleteBookService;
 import OnlineLibrary.ro.MyApiApp.Books.Repository.BookRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 
 @Service
 public class DeleteBookService implements IDeleteBookService {
@@ -16,7 +18,7 @@ public class DeleteBookService implements IDeleteBookService {
 
 
     @Override
-    public void DeleteBook(Long id) {
+    public void DeleteBook(UUID id) {
         bookRepository.deleteById(id);
     }
 }

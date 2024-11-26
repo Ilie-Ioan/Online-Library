@@ -11,6 +11,7 @@ import OnlineLibrary.ro.MyApiApp.Books.Services.ReturnBookService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(path = "/books")
@@ -46,25 +47,25 @@ public class BookController {
     }
 
     @PutMapping(path = "{id}")
-    public void updateBook(@RequestBody Books book ,@PathVariable long id)
+    public void updateBook(@RequestBody Books book ,@PathVariable UUID id)
     {
         updateBookService.UpdateBook(book,id);
     }
 
     @PutMapping(path = "{id}/borrow")
-    public void borrowBook(@PathVariable long id)
+    public void borrowBook(@PathVariable UUID id)
     {
         borrowBookService.BorrowBook(id);
     }
 
     @PutMapping(path = "{id}/return")
-    public void returnBook(@PathVariable long id)
+    public void returnBook(@PathVariable UUID id)
     {
         returnBookService.ReturnBook(id);
     }
 
     @DeleteMapping(path = "{id}")
-    public void deleteBooks(@PathVariable long id)
+    public void deleteBooks(@PathVariable UUID id)
     {
         deleteBookService.DeleteBook(id);
     }
