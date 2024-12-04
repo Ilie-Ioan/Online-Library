@@ -16,6 +16,9 @@ public class MyUser {
     private String username;
     private String email;
     private String password;
+    private String roles;
+
+
 
     private String firstName;
     private String lastName;
@@ -26,20 +29,27 @@ public class MyUser {
 
     public MyUser() {}
 
-    public MyUser(String username, String email, String password, String firstName, String lastName, String phoneNumber, List<Adresa> address) {
+    public MyUser(String username, String email, String password, String roles, String firstName, String lastName, String phoneNumber, List<Adresa> address) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.roles = roles;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.address = address;
     }
 
-
-
     public UUID getId() {
         return id;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 
     public String getUsername() {
